@@ -6,7 +6,8 @@ WITH daily_raw AS (
     FROM {{source('weather_data', 'weather_daily_raw')}}
 ),
 daily_flattened AS (
-    SELECT  airport_code,
+    SELECT  
+            airport_code,
             station_id,
             (json_data->>'date')::DATE AS date,
             (json_data->>'tavg')::NUMERIC AS avg_temp_c,
